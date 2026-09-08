@@ -24,6 +24,10 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-validation'
     compileOnly 'org.projectlombok:lombok'
     runtimeOnly 'com.mysql:mysql-connector-j'
+    runtimeOnly 'com.h2database:h2'
+    // MySQL
+    implementation 'mysql:mysql-connector-java:8.0.28'
+    implementation 'org.springframework.boot:spring-boot-starter-data-jdbc'
     // 통합 테스트 전용 인메모리 DB. 런타임은 MySQL만 사용한다.
     testRuntimeOnly 'com.h2database:h2'
     annotationProcessor 'org.projectlombok:lombok'
