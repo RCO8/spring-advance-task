@@ -19,14 +19,14 @@ import java.util.List;
 public class GameController {
     private final GameService gameService;
 
-    @GetMapping("/game")
+    @GetMapping("/games")
     public ResponseEntity<List<Object>> getGames() {
         // List<Object>는 임시 구현이며, Lv 7에서 제대로 고칩니다.
         // List.of()는 빈 목록을 돌려주는 임시 구현이며, Lv 7에서 제대로 고칩니다.
         return ResponseEntity.ok(List.of());
     }
 
-    @PostMapping("/games")
+    @PostMapping("/gamess")
     public ResponseEntity<GameDetailResponse> createGame(@Valid @RequestBody CreateRequest request) {
         GameDetailResponse created = gameService.createGame(request);
         return ResponseEntity.status(HttpStatus.CREATED).body(created);
