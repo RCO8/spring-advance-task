@@ -3,6 +3,7 @@ package com.gamebasic.game.controller;
 import com.gamebasic.game.dto.CreateRequest;
 import com.gamebasic.game.dto.GameDetailResponse;
 import com.gamebasic.game.dto.ProgressRequest;
+import com.gamebasic.game.dto.RenameRequest;
 import com.gamebasic.game.entity.GameSummaryResponse;
 import com.gamebasic.game.service.GameService;
 import jakarta.validation.Valid;
@@ -44,4 +45,17 @@ public class GameController {
      ) {
          return ResponseEntity.ok(gameService.updateProgress(gameId, request));
      }
+
+    @PatchMapping("/games/{gameId}")
+    public ResponseEntity<GameDetailResponse> renameGame(
+            @PathVariable Long gameId,
+            @Valid @RequestBody RenameRequest request
+     ) {
+         return ResponseEntity.ok(gameService.remaneGame(gameId, request));
+    }
+
+    @DeleteMapping("/games/{gameId}")
+    public void deleteGame(@PathVariable Long gameId) {
+        gameService.deleteGame(gameId);
+    }
 }
