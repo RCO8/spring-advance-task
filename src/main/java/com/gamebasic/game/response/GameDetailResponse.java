@@ -1,4 +1,4 @@
-package com.gamebasic.game.dto;
+package com.gamebasic.game.response;
 
 import com.gamebasic.game.entity.GamePhase;
 import com.gamebasic.game.entity.GameStatus;
