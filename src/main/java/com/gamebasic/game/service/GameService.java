@@ -1,5 +1,7 @@
 package com.gamebasic.game.service;
 
+import com.gamebasic.common.exception.GameFinishedException;
+import com.gamebasic.common.exception.GameNotFoundException;
 import com.gamebasic.game.dto.CreateRequest;
 import com.gamebasic.game.response.GameDetailResponse;
 import com.gamebasic.game.dto.ProgressRequest;
@@ -52,7 +54,7 @@ public class GameService {
 
     private Game findGame(Long gameId) {
         return gameRepository.findById(gameId)
-            .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "게임을 찾을 수 없습니다"));
+            .orElseThrow(() -> new GameNotFoundException(gameId));
     }
 
     @Transactional
@@ -60,7 +62,7 @@ public class GameService {
         Game game = findGame(gameId);
 
         if (game.isFinished()) { // 덮어씌우지 못하게
-            throw new ResponseStatusException(HttpStatus.CONFLICT, "게임이 진행중이 아닙니다.");
+            throw new GameFinishedException(gameId);
         }
         game.updateProgress(
             request.getCurrentHp(),
