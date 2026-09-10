@@ -1,7 +1,7 @@
 package com.gamebasic.game.controller;
 
 import com.gamebasic.game.dto.CreateRequest;
-import com.gamebasic.game.dto.GameDetailResponse;
+import com.gamebasic.game.response.GameDetailResponse;
 import com.gamebasic.game.dto.ProgressRequest;
 import com.gamebasic.game.dto.RenameRequest;
 import com.gamebasic.game.entity.GameSummaryResponse;

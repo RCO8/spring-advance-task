@@ -1,12 +1,13 @@
 package com.gamebasic.game.service;
 
 import com.gamebasic.game.dto.CreateRequest;
-import com.gamebasic.game.dto.GameDetailResponse;
+import com.gamebasic.game.response.GameDetailResponse;
 import com.gamebasic.game.dto.ProgressRequest;
 import com.gamebasic.game.dto.RenameRequest;
 import com.gamebasic.game.entity.Game;
 import com.gamebasic.game.entity.GameSummaryResponse;
 import com.gamebasic.game.repository.GameRepository;
+import com.gamebasic.game.response.GameDetailResponse;
 import com.gamebasic.runcard.dto.CardResponse;
 import com.gamebasic.runcard.dto.RunCardRequest;
 import com.gamebasic.runcard.entity.RunCard;
