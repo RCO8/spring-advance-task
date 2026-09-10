@@ -57,6 +57,10 @@ public class GameService {
     @Transactional
     public GameDetailResponse updateProgress(Long gameId, ProgressRequest request) {
         Game game = findGame(gameId);
+
+        if (game.isFinished()) { // 덮어씌우지 못하게
+            throw new ResponseStatusException(HttpStatus.CONFLICT, "게임이 진행중이 아닙니다.");
+        }
         game.updateProgress(
             request.getCurrentHp(),
             request.getCurrentFloor(),
