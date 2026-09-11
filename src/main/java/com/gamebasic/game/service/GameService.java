@@ -20,9 +20,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -85,7 +85,11 @@ public class GameService {
         // 게임별 덱 사이즈
         List<DeckCount> deckCounts = runCardRepository.countByGames(games);
         // deckSize를 gameID에서 로드
-        Map<Long, Long> deckSizeMap = new HashMap<>();
+        Map<Long, Long> deckSizeMap = deckCounts.stream()
+                .collect(Collectors.toMap(
+                        DeckCount::getDeckSize,
+                        DeckCount::getGameId
+                ));
 
         for (DeckCount deckCount : deckCounts) {
             deckSizeMap.put(
@@ -96,6 +100,8 @@ public class GameService {
 
         for(Game g : games){
             List<CardResponse> deck = findDeck(g); //이거 해당 Id에서 가져오기
+            Long deckSize = deckSizeMap.getOrDefault(g.getId(), 0L);
+
             gamesSummary.add(new GameSummaryResponse(
                     g.getId(),
                     g.getPlayerName(),
@@ -106,7 +112,7 @@ public class GameService {
                     g.getCreateAt(),
                     g.getUpdateAt(),
                     deck,
-                    deck.size()
+                    deckSize
             ));
         }
         return gamesSummary;

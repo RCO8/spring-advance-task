@@ -17,7 +17,7 @@ public class GameSummaryResponse {
     private final List<CardResponse> cards;
     private final LocalDateTime createAt;
     private final LocalDateTime updateAt;
-    private final int deckSize;
+    private final Long deckSize;
 
 
     public GameSummaryResponse(
@@ -25,7 +25,7 @@ public class GameSummaryResponse {
             int currentHp, int currentFloor,
             GamePhase phase, GameStatus status,
             LocalDateTime createAt, LocalDateTime updateAt,
-            List<CardResponse> cards, int deckSize) {
+            List<CardResponse> cards, Long deckSize) {
         this.id = id;
         this.playerName = playerName;
         this.currentHp = currentHp;

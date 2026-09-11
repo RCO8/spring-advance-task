@@ -38,9 +38,6 @@ public class Game extends BaseEntity {
     @Column(nullable = false, length = 16)
     private GameStatus status;
 
-    @Column(nullable = false)
-    private int deckSize;
-
     public Game(String playerName) {
         this.playerName = playerName;
         this.currentHp = 99;
