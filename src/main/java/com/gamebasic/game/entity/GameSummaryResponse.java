@@ -17,13 +17,15 @@ public class GameSummaryResponse {
     private final List<CardResponse> cards;
     private final LocalDateTime createAt;
     private final LocalDateTime updateAt;
+    private final int deckSize;
+
 
     public GameSummaryResponse(
             Long id, String playerName,
             int currentHp, int currentFloor,
             GamePhase phase, GameStatus status,
             LocalDateTime createAt, LocalDateTime updateAt,
-            List<CardResponse> cards) {
+            List<CardResponse> cards, int deckSize) {
         this.id = id;
         this.playerName = playerName;
         this.currentHp = currentHp;
@@ -33,5 +35,6 @@ public class GameSummaryResponse {
         this.cards = cards;
         this.createAt = createAt;
         this.updateAt = updateAt;
+        this.deckSize = deckSize;
     }
 }

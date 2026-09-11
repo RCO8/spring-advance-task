@@ -11,6 +11,7 @@ import com.gamebasic.game.repository.GameRepository;
 import com.gamebasic.game.response.GameDetailResponse;
 import com.gamebasic.runcard.dto.CardResponse;
 import com.gamebasic.runcard.dto.RunCardRequest;
+import com.gamebasic.runcard.entity.DeckCount;
 import com.gamebasic.runcard.entity.RunCard;
 import com.gamebasic.runcard.repository.RunCardRepository;
 import jakarta.validation.Valid;
@@ -19,7 +20,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Service
 @RequiredArgsConstructor
@@ -79,6 +82,18 @@ public class GameService {
         List<Game> games = gameRepository.findAllByOrderByIdAsc();
         List<GameSummaryResponse> gamesSummary = new ArrayList<>();
 
+        // 게임별 덱 사이즈
+        List<DeckCount> deckCounts = runCardRepository.countByGames(games);
+        // deckSize를 gameID에서 로드
+        Map<Long, Long> deckSizeMap = new HashMap<>();
+
+        for (DeckCount deckCount : deckCounts) {
+            deckSizeMap.put(
+                    deckCount.getDeckSize(),
+                    deckCount.getGameId()
+            );
+        }
+
         for(Game g : games){
             List<CardResponse> deck = findDeck(g); //이거 해당 Id에서 가져오기
             gamesSummary.add(new GameSummaryResponse(
@@ -90,7 +105,8 @@ public class GameService {
                     g.getStatus(),
                     g.getCreateAt(),
                     g.getUpdateAt(),
-                    deck
+                    deck,
+                    deck.size()
             ));
         }
         return gamesSummary;
@@ -120,7 +136,7 @@ public class GameService {
      // 게임 Dto 불러오기
      private GameDetailResponse toGameDetailResponse(Game game) {
         List<CardResponse> deck = findDeck(game);
-
+        Long deckSize = (long) deck.size();
         return new GameDetailResponse(
                 game.getId(),
                 game.getPlayerName(),
@@ -130,7 +146,8 @@ public class GameService {
                 game.getStatus(),
                 game.getCreateAt(),
                 game.getUpdateAt(),
-                deck
+                deck,
+                deckSize
         );
      }
 

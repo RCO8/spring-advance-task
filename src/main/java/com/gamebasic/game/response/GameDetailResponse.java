@@ -19,6 +19,7 @@ public class GameDetailResponse {
     private final List<CardResponse> deck;
     private final LocalDateTime createAt;
     private final LocalDateTime updateAt;
+    private final Long deckSize;
 
     public GameDetailResponse(
         Long id,
@@ -29,8 +30,8 @@ public class GameDetailResponse {
         GameStatus status,
         LocalDateTime createAt,
         LocalDateTime updateAt,
-        List<CardResponse> deck
-    ) {
+        List<CardResponse> deck,
+        Long deckSize) {
         this.id = id;
         this.playerName = playerName;
         this.currentHp = currentHp;
@@ -40,5 +41,6 @@ public class GameDetailResponse {
         this.createAt = createAt;
         this.updateAt = updateAt;
         this.deck = List.copyOf(deck);
+        this.deckSize = deckSize;
     }
 }
