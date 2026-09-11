@@ -3,6 +3,7 @@ package com.gamebasic.game.entity;
 import com.gamebasic.runcard.dto.CardResponse;
 import lombok.Getter;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Getter
@@ -14,8 +15,15 @@ public class GameSummaryResponse {
     private final GamePhase phase;
     private final GameStatus status;
     private final List<CardResponse> cards;
+    private final LocalDateTime createAt;
+    private final LocalDateTime updateAt;
 
-    public GameSummaryResponse(Long id, String playerName, int currentHp, int currentFloor, GamePhase phase, GameStatus status,  List<CardResponse> cards) {
+    public GameSummaryResponse(
+            Long id, String playerName,
+            int currentHp, int currentFloor,
+            GamePhase phase, GameStatus status,
+            LocalDateTime createAt, LocalDateTime updateAt,
+            List<CardResponse> cards) {
         this.id = id;
         this.playerName = playerName;
         this.currentHp = currentHp;
@@ -23,5 +31,7 @@ public class GameSummaryResponse {
         this.phase = phase;
         this.status = status;
         this.cards = cards;
+        this.createAt = createAt;
+        this.updateAt = updateAt;
     }
 }

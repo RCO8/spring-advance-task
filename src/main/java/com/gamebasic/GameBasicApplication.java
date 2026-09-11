@@ -2,11 +2,10 @@ package com.gamebasic;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.boot.persistence.autoconfigure.EntityScan;
-import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
+import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 
 @SpringBootApplication
-//@EnableJpaRepositories(basePackages = "com.gamebasic.game.repository")
+@EnableJpaAuditing
 public class GameBasicApplication {
 
     public static void main(String[] args) {

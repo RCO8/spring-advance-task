@@ -3,7 +3,6 @@ package com.gamebasic.game.service;
 import com.gamebasic.common.exception.GameFinishedException;
 import com.gamebasic.common.exception.GameNotFoundException;
 import com.gamebasic.game.dto.CreateRequest;
-import com.gamebasic.game.response.GameDetailResponse;
 import com.gamebasic.game.dto.ProgressRequest;
 import com.gamebasic.game.dto.RenameRequest;
 import com.gamebasic.game.entity.Game;
@@ -16,10 +15,8 @@ import com.gamebasic.runcard.entity.RunCard;
 import com.gamebasic.runcard.repository.RunCardRepository;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.server.ResponseStatusException;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -91,6 +88,8 @@ public class GameService {
                     g.getCurrentFloor(),
                     g.getPhase(),
                     g.getStatus(),
+                    g.getCreateAt(),
+                    g.getUpdateAt(),
                     deck
             ));
         }
@@ -129,6 +128,8 @@ public class GameService {
                 game.getCurrentFloor(),
                 game.getPhase(),
                 game.getStatus(),
+                game.getCreateAt(),
+                game.getUpdateAt(),
                 deck
         );
      }
