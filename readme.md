@@ -16,3 +16,5 @@
     <li>끝난 게임 덮어쓰기 방지</li>
     <li>전역 예외처리 추가</li>
 </ul>
+
+<h3><a href="https://f-api.github.io/game-spring-api-docs/basic/G4K-_w062FSg_Tnd.html#kUlZoL7dtUb9UgNnzOW5jHq9yweODIfe253SDNdgzlU">답안 링크</a></h3>
