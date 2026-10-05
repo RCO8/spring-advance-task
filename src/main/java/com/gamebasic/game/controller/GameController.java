@@ -47,15 +47,17 @@ public class GameController {
      }
 
     @PatchMapping("/games/{gameId}")
-    public ResponseEntity<GameDetailResponse> renameGame(
+    public ResponseEntity<Void> renameGame(
             @PathVariable Long gameId,
             @Valid @RequestBody RenameRequest request
      ) {
-         return ResponseEntity.ok(gameService.remaneGame(gameId, request));
+        gameService.remaneGame(gameId, request);
+         return ResponseEntity.noContent().build();
     }
 
     @DeleteMapping("/games/{gameId}")
-    public void deleteGame(@PathVariable Long gameId) {
+    public ResponseEntity<Void> deleteGame(@PathVariable Long gameId) {
         gameService.deleteGame(gameId);
+        return ResponseEntity.noContent().build();
     }
 }
